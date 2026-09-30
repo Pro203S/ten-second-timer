@@ -71,7 +71,7 @@ export default function Page() {
             descriptionApi.start({ "opacity": 1 });
             setTimer("10.000");
             setDisableClick(false);
-        }, 1500);
+        }, 2500);
     };
 
     useEffect(() => {
