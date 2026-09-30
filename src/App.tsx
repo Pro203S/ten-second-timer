@@ -5,7 +5,7 @@ import css from './app.module.css';
 const CONFETTI_PIECES = Array.from({ length: 28 }, (_, index) => index);
 
 export default function Page() {
-    const [timer, setTimer] = useState("10.000");
+    const [timer, setTimer] = useState("10.00");
     const [enabled, setEnabled] = useState(false);
     const [status, setStatus] = useState<"stopped" | "success" | "fail">("stopped");
     const progress = Math.min(1, Math.max(0, Number(timer) / 10));
@@ -36,7 +36,7 @@ export default function Page() {
             const elapsed = performance.now() - timeStart.current;
             const remaining = 10000 - elapsed;
 
-            setTimer((remaining / 1000).toFixed(3));
+            setTimer((remaining / 1000).toFixed(2));
             frameId.current = requestAnimationFrame(render);
         };
 
@@ -53,7 +53,7 @@ export default function Page() {
 
         const diff = performance.now() - timeStart.current - 10000;
 
-        if (diff === 0) {
+        if (Number((diff / 1000).toFixed(2)) === 0) {
             setStatus("success");
         } else {
             setStatus("fail");
@@ -61,7 +61,7 @@ export default function Page() {
 
         setDisableClick(true);
         descriptionApi.start({ "opacity": 0 });
-        setTimer((-(diff / 1000)).toFixed(3));
+        setTimer((-(diff / 1000)).toFixed(2));
         clearTimeout(tooLong.current);
 
         setTimeout(() => {
@@ -69,7 +69,7 @@ export default function Page() {
             timeStart.current = -1;
             timeEnd.current = -1;
             descriptionApi.start({ "opacity": 1 });
-            setTimer("10.000");
+            setTimer("10.00");
             setDisableClick(false);
         }, 2500);
     };
@@ -95,7 +95,7 @@ export default function Page() {
         window.addEventListener("keydown", cb);
 
         return () => window.removeEventListener("keydown", cb);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enabled, disableClick]);
 
     return <div
