@@ -100,7 +100,7 @@ export default function Page() {
 
     return <div
         className={css.container}
-        onClick={() => {
+        onMouseDown={() => {
             if (disableClick) return;
             if (!enabled) {
                 setEnabled(true);
