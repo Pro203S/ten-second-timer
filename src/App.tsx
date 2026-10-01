@@ -79,7 +79,7 @@ export default function Page() {
             if (key.repeat) return;
             if (disableClick) return;
 
-            if (key.key !== " ") return;
+            if (key.key !== "Enter") return;
             key.preventDefault();
             if (!enabled) {
                 setEnabled(true);
@@ -142,7 +142,7 @@ export default function Page() {
                 />
             </svg>
             <animated.span className={css.timer} style={{ "color": colors.progress }}>{timer}</animated.span>
-            <animated.span className={css.description} style={{ "opacity": description.opacity }}>스페이스 바를 누르거나 화면을 클릭해주세요!</animated.span>
+            <animated.span className={css.description} style={{ "opacity": description.opacity }}>엔터 키를 누르거나 화면을 클릭해주세요!</animated.span>
         </div>
     </div>;
 }
